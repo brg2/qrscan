@@ -5,6 +5,7 @@
         <script>
             var decodedAddress = "";
             function returnScan() {
+                try {
                 var curHash = window.location.hash,
                     fromURL = new URL(decodeURIComponent(curHash.substr(1)))
                     fromJSON = JSON.parse(atob(fromURL.hash.substr(1)))
@@ -13,6 +14,9 @@
                 alert("Using hash json: " + JSON.stringify(fromJSON))
                 fromURL.hash = btoa(JSON.stringify(fromJSON))
                 window.location = fromURL.href;
+                } catch (e) {
+                    alert("Error: " + e.toString())
+                }
             }
         </script>
     </head>
