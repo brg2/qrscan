@@ -7,8 +7,9 @@
             function returnScan() {
                 try {
                 var curHash = window.location.hash,
-                    fromURL = new URL(decodeURIComponent(curHash.substr(1)))
-                    fromJSON = JSON.parse(atob(fromURL.hash.substr(1)))
+                    fromURL = new URL(decodeURIComponent(curHash.substr(1))),
+                    // Account for recovery flag "#?"
+                    fromJSON = JSON.parse(atob(fromURL.hash.substr(2)))
                 //fromJSON.address = "TESTADDRESS"
                 fromJSON.address = decodedAddress
                 alert("Using hash json: " + JSON.stringify(fromJSON))
