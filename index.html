@@ -10,6 +10,7 @@
                     fromJSON = JSON.parse(atob(fromURL.hash.substr(1)))
                 //fromJSON.address = "TESTADDRESS"
                 fromJSON.address = decodedAddress
+                alert("Using hash json: " + JSON.stringify(fromJSON))
                 fromURL.hash = btoa(JSON.stringify(fromJSON))
                 window.location = fromURL.href;
             }
@@ -23,6 +24,7 @@
                 //console.log(`Code scanned = ${decodedText}`, decodedResult)
                 decodedAddress = decodedText.indexOf(':') >= 0 ? 
                     decodedText.split(":")[1] : decodedText
+                alert("Code has been found: " + decodedAddress)
             }
             var html5QrcodeScanner = new Html5QrcodeScanner(
                 "qr-reader", { fps: 10, qrbox: 250 }
