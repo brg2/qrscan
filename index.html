@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/html5-qrcode"></script>
+        <script>
+            var decodedAddress = "";
+            function returnScan() {
+                var curHash = window.location.hash,
+                    fromURL = new URL(decodeURIComponent(curHash.substr(1)))
+                    fromJSON = JSON.parse(atob(fromURL.hash.substr(1)))
+                //fromJSON.address = "TESTADDRESS"
+                fromJSON.address = decodedAddress
+                fromURL.hash = btoa(JSON.stringify(fromJSON))
+                window.location = fromURL.href;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="qr-reader" style="width: 600px"></div>
+        <button onclick="returnScan();">Use code</button>
+        <script>
+            function onScanSuccess(decodedText, decodedResult) {
+                //console.log(`Code scanned = ${decodedText}`, decodedResult)
+                decodedAddress = decodedText.indexOf(':') >= 0 ? 
+                    decodedText.split(":")[1] : decodedText
+            }
+            var html5QrcodeScanner = new Html5QrcodeScanner(
+                "qr-reader", { fps: 10, qrbox: 250 }
+            )
+            html5QrcodeScanner.render(onScanSuccess)
+        </script>
+    </body>
+</html>
