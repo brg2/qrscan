@@ -13,7 +13,7 @@
                 //fromJSON.address = "TESTADDRESS"
                 fromJSON.address = decodedAddress
                 alert("Using hash json: " + JSON.stringify(fromJSON))
-                fromURL.hash = btoa(JSON.stringify(fromJSON))
+                fromURL.hash = "?" + btoa(JSON.stringify(fromJSON))
                 window.location = fromURL.href;
                 } catch (e) {
                     alert("Error: " + e.toString())
