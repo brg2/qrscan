@@ -38,11 +38,15 @@
                 //alert("Code has been found: " + decodedAddress)
                 returnScan();
             }
+            try {
             var html5QrcodeScanner = new Html5QrcodeScanner(
                 "qr-reader"
             )
             var scannerConfig = { fps: 10, qrbox: 250 }
             html5QrcodeScanner.start({ facingMode: "environment" }, scannerConfig, onScanSuccess)
+            } catch(e) {
+                alert(e.toString())
+            }
         </script>
     </body>
 </html>
