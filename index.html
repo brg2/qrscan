@@ -28,7 +28,7 @@
         </style>
     </head>
     <body>
-        <div id="qr-reader" style="width: 100%; height: 100%;"></div>
+        <div id="qr-reader" style="width: 250px; height: 250px; background-color: blue;"></div>
         <!-- button onclick="returnScan();">Use code</button -->
         <script>
             function onScanSuccess(decodedText, decodedResult) {
@@ -38,15 +38,16 @@
                 //alert("Code has been found: " + decodedAddress)
                 returnScan();
             }
-            try {
-            var html5QrcodeScanner = new Html5QrcodeScanner(
-                "qr-reader"
-            )
-            var scannerConfig = { fps: 10, qrbox: 250 }
-            html5QrcodeScanner.start({ facingMode: "environment" }, scannerConfig, onScanSuccess)
-            } catch(e) {
-                alert(e.toString())
-            }
+            // try {
+                var html5QrcodeScanner = new Html5Qrcode(
+                    "qr-reader"
+                )
+                var scannerConfig = { fps: 10, qrbox: {width: 250, height: 250} }
+                html5QrcodeScanner.start({ facingMode: "user" }, scannerConfig, onScanSuccess)
+                //alert('after start')
+            // } catch(e) {
+            //     alert(e.toString())
+            // }
         </script>
     </body>
 </html>
