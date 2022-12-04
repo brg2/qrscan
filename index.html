@@ -13,7 +13,7 @@
                     fromJSON = JSON.parse(atob(fromURL.hash.substr(2)))
                 //fromJSON.address = "TESTADDRESS"
                 fromJSON.address = decodedAddress
-                alert("Using hash json: " + JSON.stringify(fromJSON))
+                //alert("Using hash json: " + JSON.stringify(fromJSON))
                 fromURL.hash = "?" + btoa(JSON.stringify(fromJSON))
                 window.location = fromURL.href;
                 } catch (e) {
@@ -24,13 +24,14 @@
     </head>
     <body>
         <div id="qr-reader" style="width: 600px"></div>
-        <button onclick="returnScan();">Use code</button>
+        <!-- button onclick="returnScan();">Use code</button -->
         <script>
             function onScanSuccess(decodedText, decodedResult) {
                 //console.log(`Code scanned = ${decodedText}`, decodedResult)
                 decodedAddress = decodedText.indexOf(':') >= 0 ? 
                     decodedText.split(":")[1] : decodedText
-                alert("Code has been found: " + decodedAddress)
+                //alert("Code has been found: " + decodedAddress)
+                returnScan();
             }
             var html5QrcodeScanner = new Html5QrcodeScanner(
                 "qr-reader", { fps: 10, qrbox: 250 }
