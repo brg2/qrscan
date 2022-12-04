@@ -42,7 +42,7 @@
                 var html5QrcodeScanner = new Html5Qrcode(
                     "qr-reader"
                 )
-                var scannerConfig = { fps: 10, qrbox: 500 }
+                var scannerConfig = { fps: 10, qrbox: {width: window.innerWidth, height: window.innerHeight} }
                 html5QrcodeScanner.start({ facingMode: "environment" }, scannerConfig, onScanSuccess)
                 //alert('after start')
             // } catch(e) {
